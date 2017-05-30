@@ -7,6 +7,7 @@
 // Actions
 export const SESSION_SIGN_UP = 'session/SESSION_SIGN_UP'
 export const SESSION_SIGN_IN = 'session/SESSION_SIGN_IN'
+export const SESSION_SIGN_OUT = 'session/SESSION_SIGN_OUT'
 
 // Mutations
 export const SESSION_SET_USER = 'session/SESSION_SET_USER'

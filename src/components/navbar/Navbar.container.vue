@@ -27,7 +27,7 @@
             <div class="form-group">
               <input type="password" class="form-control" placeholder="contraseña" v-model="password">
             </div>
-            <button type="button" class="btn btn-default" @click="signin(login)">Iniciar sesión</button>
+            <button type="button" class="btn btn-default" @click="login">Iniciar sesión</button>
           </form>
           <ul class="nav navbar-nav navbar-right">
             <li v-if="user === ''">
@@ -50,7 +50,7 @@
               <ul class="dropdown-menu" role="menu">
                 <li><a>Sesión: <strong>{{user.username}}</strong></a></li>
                 <li class="divider"></li>
-                <li><a href=""><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesión</a></li>
+                <li><a href="" @click="logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesión</a></li>
               </ul>
             </li>
           </ul>
@@ -80,7 +80,7 @@
       ...mapGetters({
         userType: constants.SESSION_USER_TYPE
       }),
-      login () {
+      loginData () {
         return {
           user_login: {
             email: this.email,
@@ -91,8 +91,17 @@
     },
     methods: {
       ...mapActions({
-        signin: constants.SESSION_SIGN_IN
-      })
+        signin: constants.SESSION_SIGN_IN,
+        signout: constants.SESSION_SIGN_OUT
+      }),
+      logout () {
+        this.signout()
+        this.$router.push({name: 'Home'})
+      },
+      login () {
+        this.signin(this.loginData)
+        this.$router.push({name: 'Home'})
+      }
     }
   }
 </script>

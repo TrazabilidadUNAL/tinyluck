@@ -30,12 +30,27 @@ const actions = {
       .then(response => response.data.token)
       .then(token => {
         commit(constants.SESSION_SET_TOKEN, token)
-        return Vue.axios.get('/producer')
+        return Vue.axios.get('/producer', {headers: {'Authorization': `Token token=${token}`}})
       })
       .then(response => response.data.data)
       .then(data => {
         commit(constants.SESSION_SET_USER, data)
       })
+  },
+  [constants.SESSION_SIGN_OUT]: ({commit}) => {
+    let url
+    switch (process.env.NODE_ENV) {
+      case 'development':
+        url = `http://localhost:3000/sign-out`
+        break
+      case 'production':
+        url = `https://gretelapp.herokuapp.com/sign-out`
+        break
+    }
+    Vue.axios.delete(url)
+      .then(response => {})
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
   }
 }
 const mutations = {
