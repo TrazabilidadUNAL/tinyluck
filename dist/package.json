@@ -1,0 +1,10 @@
+{
+  "name": "Gretel",
+  "version": "1.0.0",
+  "description": "Gretel",
+  "author": "Mesi Rendon",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm install express"
+  }
+}
