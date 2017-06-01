@@ -26,3 +26,13 @@ export const PLACES_STATE_SET_LIST = 'places/PLACES_STATE_SET_LIST'
 
 // Getters
 export const PLACES_MARKERS = 'places/PLACES_MARKERS'
+
+// PRODUCTS ===============================================
+
+// Actions
+export const PRODUCTS_GET = 'products/PRODUCTS_GET'
+
+// Mutations
+export const PRODUCTS_SET = 'products/PRODUCTS_SET'
+
+// Getters
