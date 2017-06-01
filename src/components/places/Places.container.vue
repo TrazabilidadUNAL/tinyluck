@@ -1,13 +1,13 @@
 <template>
   <div class="container">
-    <h1>Mis Lugares</h1>
+    <h1><i class="fa fa-map-marker" aria-hidden="true"></i> Mis Lugares</h1>
     <div class="row">
       <div class="col-md-4">
         <table class="table table-striped table-hover scrollable">
           <thead>
           <tr>
             <th>#</th>
-            <th>Name</th>
+            <th>Nombre</th>
           </tr>
           </thead>
           <tbody>
@@ -138,10 +138,3 @@
   }
 </script>
 
-<style type="text/css" lang="css" scoped>
-  .scrollable {
-    display: block;
-    height: 500px;
-    overflow-y: scroll;
-  }
-</style>

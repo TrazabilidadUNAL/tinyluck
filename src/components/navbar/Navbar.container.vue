@@ -38,25 +38,13 @@
           </ul>
         </template>
         <template v-else>
-          <ul class="nav navbar-nav navbar-right">
-            <template v-if="userType == 'producer'">
-              <li :class="{active: route == 'Places'}"><router-link :to="{name: 'Places'}" tag="a"><i class="fa fa-map-marker" aria-hidden="true"></i> Lugares</a></router-link></li>
-              <li :class="{active: route == 'Production'}"><a><i class="fa fa-tree" aria-hidden="true"></i> Producción</a></li>
-              <li :class="{active: route == 'Packages'}"><a><i class="fa fa-cubes" aria-hidden="true"></i> Paquetes</a></li>
-              <li :class="{active: route == 'Routes'}"><a><i class="fa fa-truck" aria-hidden="true"></i> Rutas</a></li>
-            </template>
-            <li class="dropdown">
-              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i
-                class="fa fa-bars" aria-hidden="true"></i> Menú <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a><i class="fa fa-user-circle-o" aria-hidden="true"></i> Sesión: <strong>{{user.username}}</strong></a></li>
-                <li class="divider"></li>
-                <li><router-link :to="{name: 'MyData'}" tag="a"><i class="fa fa-cogs" aria-hidden="true"></i> Mis datos</router-link></li>
-                <li class="divider"></li>
-                <li><a href="" @click="logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesión</a></li>
-              </ul>
-            </li>
-          </ul>
+          <producer-menu
+            v-if="userType == 'producer'"
+            :route="route"
+            :user="user"
+            @logout="logout">
+
+          </producer-menu>
         </template>
       </div>
     </div>
@@ -66,6 +54,8 @@
 <script type="text/babel" lang="babel">
   import {mapState, mapActions} from 'vuex'
   import * as constants from '@/store/constants'
+
+  import ProducerMenu from './ProducerMenu.vue'
 
   export default {
     data () {
@@ -103,6 +93,9 @@
         this.signin(this.loginData)
         this.$router.push({name: 'Home'})
       }
+    },
+    components: {
+      ProducerMenu
     }
   }
 </script>

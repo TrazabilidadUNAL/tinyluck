@@ -19,4 +19,9 @@
   .content {
     margin-top: 60px;
   }
+  .scrollable {
+    display: block;
+    max-height: 500px;
+    overflow-y: scroll;
+  }
 </style>

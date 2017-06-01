@@ -6,12 +6,14 @@ import Vuex from 'vuex'
 
 import Session from './modules/session'
 import Places from './modules/places'
+import Products from './modules/products'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
     Session,
-    Places
+    Places,
+    Products
   }
 })
