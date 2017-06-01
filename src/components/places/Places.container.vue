@@ -79,8 +79,8 @@
   Vue.use(VueGoogleMaps, {
     load: {
       key: 'AIzaSyDUEOdkJLKMsXexf6z88-rYiDkcNj_j_0o',
-      v: '3.27',
-      libraries: 'places' // If you need to use place input
+      v: '3.27'
+//      libraries: 'places' // If you need to use place input
     }
   })
 
@@ -102,9 +102,6 @@
     methods: {
       ...mapActions({
         getPlaces: constants.PLACES_GET
-      }),
-      ...mapGetters({
-        userType: constants.SESSION_USER_TYPE
       }),
       detail (place) {
         this.selected = place.id
@@ -128,19 +125,20 @@
     },
     computed: {
       ...mapState({
-        places: state => state.Places.places
+        places: state => state.Places.places,
+        userType: state => state.Session.userType
       }),
       ...mapGetters({
         markers: constants.PLACES_MARKERS
       })
     },
     mounted () {
-      this.getPlaces(this.userType())
+      this.getPlaces(this.userType)
     }
   }
 </script>
 
-<style type="text/css" lang="css">
+<style type="text/css" lang="css" scoped>
   .scrollable {
     display: block;
     height: 500px;

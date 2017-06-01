@@ -5,7 +5,7 @@ import Vue from 'vue'
 import * as constants from '@/store/constants'
 
 const state = {
-  places: ''
+  places: []
 }
 const actions = {
   [constants.PLACES_GET]: ({commit}, data) => {
