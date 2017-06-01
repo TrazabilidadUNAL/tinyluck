@@ -9,8 +9,9 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <router-link :to="{name: 'Home'}" class="navbar-brand" tag="a"><img src="/static/img/logo.png" alt="logo"
-                                                                            class="logo"></router-link>
+        <router-link :to="{name: 'Home'}" class="navbar-brand" tag="a">
+          <img src="/static/img/logo.png" alt="logo" class="logo">
+        </router-link>
       </div>
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
@@ -48,7 +49,9 @@
               <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i
                 class="fa fa-bars" aria-hidden="true"></i> Menú <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a>Sesión: <strong>{{user.username}}</strong></a></li>
+                <li><a><i class="fa fa-user-circle-o" aria-hidden="true"></i> Sesión: <strong>{{user.username}}</strong></a></li>
+                <li class="divider"></li>
+                <li><router-link :to="{name: 'MyData'}" tag="a"><i class="fa fa-cogs" aria-hidden="true"></i> Mis datos</router-link></li>
                 <li class="divider"></li>
                 <li><a href="" @click="logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesión</a></li>
               </ul>
@@ -61,7 +64,7 @@
 </template>
 
 <script type="text/babel" lang="babel">
-  import {mapState, mapActions, mapGetters} from 'vuex'
+  import {mapState, mapActions} from 'vuex'
   import * as constants from '@/store/constants'
 
   export default {
@@ -75,10 +78,8 @@
       ...mapState({
         user: state => state.Session.user,
         token: state => state.Session.token,
-        route: state => state.route.name
-      }),
-      ...mapGetters({
-        userType: constants.SESSION_USER_TYPE
+        route: state => state.route.name,
+        userType: state => state.Session.userType
       }),
       loginData () {
         return {

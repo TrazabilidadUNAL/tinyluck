@@ -81,8 +81,8 @@
           </div>
           <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
-              <button type="reset" class="btn btn-danger">Cancel</button>
-              <button type="button" class="btn btn-primary" @click="build">Submit</button>
+              <button type="reset" class="btn btn-danger"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button>
+              <button type="button" class="btn btn-primary" @click="build"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
             </div>
           </div>
         </fieldset>

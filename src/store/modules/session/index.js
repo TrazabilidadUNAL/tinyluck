@@ -6,6 +6,7 @@ import * as constants from '@/store/constants'
 
 const state = {
   user: !!localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : '', // eslint-disable-line no-extra-boolean-cast
+  userType: !!localStorage.getItem('userType') ? localStorage.getItem('userType') : '', // eslint-disable-line no-extra-boolean-cast
   token: !!localStorage.getItem('token') ? localStorage.getItem('token') : '' // eslint-disable-line no-extra-boolean-cast
 }
 const actions = {
@@ -27,10 +28,10 @@ const actions = {
         break
     }
     Vue.axios.post(url, data)
-      .then(response => response.data.token)
-      .then(token => {
-        commit(constants.SESSION_SET_TOKEN, token)
-        return Vue.axios.get('/producer', {headers: {'Authorization': `Token token=${token}`}})
+      .then(response => response.data)
+      .then(data => {
+        commit(constants.SESSION_SET_TOKEN, data)
+        return Vue.axios.get('/producer', {headers: {'Authorization': `Token token=${data.token}`}})
       })
       .then(response => response.data.data)
       .then(data => {
@@ -51,6 +52,15 @@ const actions = {
       .then(response => {})
     localStorage.removeItem('token')
     localStorage.removeItem('user')
+  },
+  [constants.SESSION_UPDATE_DATA]: ({commit}, data) => {
+    Vue.axios.put('/producer', data)
+      .then(response => {
+        commit(constants.SESSION_SET_USER, data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 }
 const mutations = {
@@ -58,24 +68,15 @@ const mutations = {
     state.user = user
     localStorage.setItem('user', JSON.stringify(user))
   },
-  [constants.SESSION_SET_TOKEN]: (state, token) => {
-    state.token = token
-    localStorage.setItem('token', token)
+  [constants.SESSION_SET_TOKEN]: (state, data) => {
+    state.token = data.token
+    state.userType = data.userType
+    Vue.axios.defaults.headers.common['Authorization'] = `Token token=${data.token}`
+    localStorage.setItem('token', data.token)
+    localStorage.setItem('userType', data.userType)
   }
 }
-const getters = {
-  [constants.SESSION_USER_TYPE]: state => {
-    if (state.user !== '') {
-      if (state.user.first_name !== undefined) {
-        return 'producer'
-      } else {
-        return 'warehouse'
-      }
-    } else {
-      return false
-    }
-  }
-}
+const getters = {}
 
 export default {
   state,

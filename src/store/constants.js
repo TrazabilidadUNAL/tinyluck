@@ -2,21 +2,21 @@
  * Created by mesi on 29/05/17.
  */
 
-// Sessions
+// SESSIONS ===============================================
 
 // Actions
 export const SESSION_SIGN_UP = 'session/SESSION_SIGN_UP'
 export const SESSION_SIGN_IN = 'session/SESSION_SIGN_IN'
 export const SESSION_SIGN_OUT = 'session/SESSION_SIGN_OUT'
+export const SESSION_UPDATE_DATA = 'session/SESSION_UPDATE_DATA'
 
 // Mutations
 export const SESSION_SET_USER = 'session/SESSION_SET_USER'
 export const SESSION_SET_TOKEN = 'session/SESSION_SET_TOKEN'
 
 // Getters
-export const SESSION_USER_TYPE = 'session/SESSION_USER_TYPE'
 
-// Lugares
+// PLACES ===============================================
 
 // Actions
 export const PLACES_GET = 'places/PLACES_GET'
