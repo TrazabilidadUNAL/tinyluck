@@ -7,7 +7,8 @@ import * as constants from '@/store/constants'
 const state = {
   user: !!localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : '', // eslint-disable-line no-extra-boolean-cast
   userType: !!localStorage.getItem('userType') ? localStorage.getItem('userType') : '', // eslint-disable-line no-extra-boolean-cast
-  token: !!localStorage.getItem('token') ? localStorage.getItem('token') : '' // eslint-disable-line no-extra-boolean-cast
+  token: !!localStorage.getItem('token') ? localStorage.getItem('token') : '', // eslint-disable-line no-extra-boolean-cast
+  error: ''
 }
 const actions = {
   [constants.SESSION_SIGN_UP]: ({commit}, data) => {
@@ -37,6 +38,9 @@ const actions = {
       .then(data => {
         commit(constants.SESSION_SET_USER, data)
       })
+      .catch(error => {
+        commit(constants.SESSION_SET_ERROR, error.response.data.errors[0].detail)
+      })
   },
   [constants.SESSION_SIGN_OUT]: ({commit}) => {
     let url
@@ -49,7 +53,8 @@ const actions = {
         break
     }
     Vue.axios.delete(url)
-      .then(response => {})
+      .then(response => {
+      })
     localStorage.removeItem('token')
     localStorage.removeItem('user')
   },
@@ -74,6 +79,9 @@ const mutations = {
     Vue.axios.defaults.headers.common['Authorization'] = `Token token=${data.token}`
     localStorage.setItem('token', data.token)
     localStorage.setItem('userType', data.userType)
+  },
+  [constants.SESSION_SET_ERROR]: (state, error) => {
+    state.error = error
   }
 }
 const getters = {}

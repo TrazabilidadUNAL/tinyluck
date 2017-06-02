@@ -13,6 +13,7 @@ export const SESSION_UPDATE_DATA = 'session/SESSION_UPDATE_DATA'
 // Mutations
 export const SESSION_SET_USER = 'session/SESSION_SET_USER'
 export const SESSION_SET_TOKEN = 'session/SESSION_SET_TOKEN'
+export const SESSION_SET_ERROR = 'session/SESSION_SET_ERROR'
 
 // Getters
 
@@ -34,5 +35,15 @@ export const PRODUCTS_GET = 'products/PRODUCTS_GET'
 
 // Mutations
 export const PRODUCTS_SET = 'products/PRODUCTS_SET'
+
+// Getters
+
+// PACKAGES ===============================================
+
+// Actions
+export const PACKAGES_GET = 'packages/PACKAGES_GET'
+
+// Mutations
+export const PACKAGES_STATE_SET_LIST = 'packages/PACKAGES_STATE_SET_LIST'
 
 // Getters
