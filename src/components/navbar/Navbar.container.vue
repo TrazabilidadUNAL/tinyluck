@@ -22,13 +22,13 @@
         </ul>
         <template v-if="token === ''">
           <form class="navbar-form navbar-right">
-            <div class="form-group">
+            <div :class="{'form-group': true, 'has-error': error !== ''}">
               <input type="email" class="form-control" placeholder="correo electrónico" v-model="email">
             </div>
-            <div class="form-group">
+            <div :class="{'form-group': true, 'has-error': error !== ''}">
               <input type="password" class="form-control" placeholder="contraseña" v-model="password">
             </div>
-            <button type="button" class="btn btn-default" @click="login">Iniciar sesión</button>
+            <button type="button" :class="{btn: true, 'btn-default': true, 'btn-danger': error !== ''}" @click="login">Iniciar sesión</button>
           </form>
           <ul class="nav navbar-nav navbar-right">
             <li v-if="user === ''">
@@ -69,7 +69,8 @@
         user: state => state.Session.user,
         token: state => state.Session.token,
         route: state => state.route.name,
-        userType: state => state.Session.userType
+        userType: state => state.Session.userType,
+        error: state => state.Session.error
       }),
       loginData () {
         return {

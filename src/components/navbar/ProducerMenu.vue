@@ -10,7 +10,11 @@
         <i class="fa fa-tree" aria-hidden="true"></i> Productos
       </router-link>
     </li>
-    <li :class="{active: route == 'Packages'}"><a><i class="fa fa-cubes" aria-hidden="true"></i> Paquetes</a></li>
+    <li :class="{active: route == 'Packages'}">
+      <router-link :to="{name: 'Packages'}">
+        <i class="fa fa-cubes" aria-hidden="true"></i> Paquetes
+      </router-link>
+    </li>
     <li :class="{active: route == 'Routes'}"><a><i class="fa fa-truck" aria-hidden="true"></i> Rutas</a></li>
     <li class="dropdown">
       <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i
