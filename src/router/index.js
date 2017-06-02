@@ -6,6 +6,7 @@ import SignUp from '@/components/signup/SignUp.container.vue'
 import Places from '@/components/places/Places.container.vue'
 import MyData from '@/components/mydata/MyData.container.vue'
 import Products from '@/components/products/Products.container.vue'
+import Packages from '@/components/packages/Packages.container.vue'
 
 Vue.use(Router)
 
@@ -17,6 +18,7 @@ export default new Router({
     {path: '/signup', name: 'SignUp', component: SignUp},
     {path: '/places', name: 'Places', component: Places},
     {path: '/my-data', name: 'MyData', component: MyData},
-    {path: '/products', name: 'Products', component: Products}
+    {path: '/products', name: 'Products', component: Products},
+    {path: '/packages', name: 'Packages', component: Packages}
   ]
 })
